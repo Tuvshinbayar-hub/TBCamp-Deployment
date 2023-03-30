@@ -1,0 +1,34 @@
+{{>header}}
+{{#section 'head'}}
+Campgrounds
+{{/section}}
+<div class="container">
+    <div id="cluster-map">Map</div>
+    <h1>All Campgrounds</h1>
+    {{>flash}}
+    <ul>
+        {{#each campgrounds}}
+        <li>
+            <div class="card mb-3">
+                <div class="row container">
+                    <img src="{{{this.imgUrl.0.url}}}" class="col-md-4 img-thumbnail">
+                    <div class="col-md-8">
+                        <div class="fs-2 pb-2">{{this.title}}</div>
+                        <div class="pb-2">{{this.description}}</div>
+                        <div class="text-muted pb-5">{{{this.location}}}</div>
+                        <a href="/campgrounds/{{{this._id}}}" class="btn btn-dark">View {{this.title}}</a>
+                    </div>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+{{campgrounds}}
+<script>
+    var tempData = {{{ json campgrounds }}}
+    var campgroundsData = { features: tempData };
+</script>
+
+<script src="/js/clusterMap.js"></script>
+{{>footer}}
