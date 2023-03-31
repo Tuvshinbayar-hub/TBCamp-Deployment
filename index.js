@@ -1,6 +1,7 @@
 if (process.env.NODE_ENV != "production") {
   require('dotenv').config();
 }
+
 const express = require("express");
 const exphbs = require("express-handlebars");
 const mongoose = require("mongoose");
@@ -178,7 +179,8 @@ async function main() {
     res.status(status).render("error", { err });
   })
 
-  app.listen("3000", () => {
-    console.log("Listening to port 3000");
+  const port = process.env.PORT || 3000;
+  app.listen(port, () => {
+    console.log(`Listening to port ${port}`);
   });
 }
