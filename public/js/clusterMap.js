@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV != "production") {
+    require('dotenv').config();
+}
 const key = process.env.MAPTILER_KEY;
 
 var map = new maplibregl.Map({
