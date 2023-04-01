@@ -49,7 +49,11 @@ app.engine(
       },
       prod: function () {
         return process.env.NODE_ENV != 'production';
+      },
+      getMapKey: function () {
+        return process.env.MAPTILER_KEY;
       }
+
     },
   })
 );
