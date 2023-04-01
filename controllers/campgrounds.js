@@ -25,18 +25,21 @@ const createCampground = async (req, res, next) => {
         query: req.body.campground.location,
         limit: 1
     };
+    const key = process.env.MAPTILER_KEY;
 
     var Geo = {
         forwardGeocode: async (config) => {
             const res = await fetch(
-                `https://api.maptiler.com/geocoding/${encodeURIComponent(config.query)}.json?key=Sxim0MmX1cOFsGNNYJ49`
+                `https://api.maptiler.com/geocoding/${encodeURIComponent(config.query)}.json?key=${key}`
             );
 
             return await res.json();
         }
     };
-    await Geo.forwardGeocode(configuration).then(res => { campground.location = res.features[0].geometry });
 
+    await Geo.forwardGeocode(configuration).then(res => {
+        campground.geometry = res.features[0].geometry;
+    });
 
     if (res.locals.currentUser)
         campground.author = res.locals.currentUser;

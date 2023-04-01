@@ -26,7 +26,7 @@ Campgrounds
 </div>
 {{campgrounds}}
 <script>
-    const key = {{ getMapKey }};
+    const key = "{{{ getMapKey }}}";
     var tempData = {{{ json campgrounds }}};
     var campgroundsData = { features: tempData };
 </script>

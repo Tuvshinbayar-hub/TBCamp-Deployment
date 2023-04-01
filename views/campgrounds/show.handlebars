@@ -114,7 +114,7 @@
         {{>flash}}
 
         <script>
-            const key = {{ getMapKey }}
+            const key = "{{{ getMapKey }}}";
             const coordinates = [{{ campground.geometry.coordinates }}];
             const title = {{{ json campground.title }}};
             const locationData = {{{ json campground.location }}};

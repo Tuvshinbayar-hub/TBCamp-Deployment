@@ -24,7 +24,7 @@ const ExpressError = require("./utils/expressError");
 const User = require('./models/user');
 const app = express();
 
-const dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/tbcamp";
+let dbUrl = process.env.DB_URL || "mongodb://127.0.0.1:27017/tbcamp";
 
 app.engine(
   "handlebars",
