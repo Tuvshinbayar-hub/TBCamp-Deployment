@@ -18,8 +18,6 @@ const createCampground = async (req, res, next) => {
     const images = files.map(f => ({ url: f.path, fileName: f.filename }));
     campground.imgUrl = images;
 
-    console.log('location is ', req.body.campground.location);
-
     //GeoCoding Section
     const configuration = {
         query: req.body.campground.location,
