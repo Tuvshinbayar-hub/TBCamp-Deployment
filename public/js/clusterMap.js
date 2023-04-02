@@ -2,8 +2,8 @@ var map = new maplibregl.Map({
     container: 'cluster-map',
     style:
         `https://api.maptiler.com/maps/streets/style.json?key=${key}`,
-    center: [-103.59179687498357, 40.66995747013945],
-    zoom: 3
+    center: [106.918556, 47.921230],
+    zoom: 4
 });
 
 const nav = new maplibregl.NavigationControl();
