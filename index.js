@@ -89,7 +89,7 @@ const sessionConfig = {
   saveUninitialized: true,
   cookie: {
     name: 'sessionID',
-    httpOnly: true,
+    //httpOnly: true,
     secure: true, //For now it's commented 'cause local host is not considered as
     //https or http secure. So, it does not work in local host. 
     expires: Date.now() + 1000 * 3600 * 24 * 7,
