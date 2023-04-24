@@ -1,9 +1,9 @@
 var map = new maplibregl.Map({
     container: 'cluster-map',
     style:
-        `https://api.maptiler.com/maps/streets/style.json?key=${key}`,
-    center: [106.918556, 47.921230],
-    zoom: 4
+        `https://api.maptiler.com/maps/bright-v2/style.json?key=${key}`,
+    center: [103.918556, 46.921230],
+    zoom: 4.6
 });
 
 const nav = new maplibregl.NavigationControl();
@@ -76,7 +76,7 @@ map.on('load', function () {
         paint: {
             'circle-color': '#11b4da',
             'circle-radius': 4,
-            'circle-stroke-width': 1,
+            'circle-stroke-width': 5,
             'circle-stroke-color': '#fff'
         }
     });
