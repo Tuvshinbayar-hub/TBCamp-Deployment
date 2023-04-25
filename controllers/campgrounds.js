@@ -18,7 +18,7 @@ const createCampground = async (req, res, next) => {
     const images = files.map(f => ({ url: f.path, fileName: f.filename }));
     campground.imgUrl = images;
 
-    //GeoCoding Section
+    //#region GeoCoding Section
     const configuration = {
         query: req.body.campground.location,
         limit: 1
@@ -30,7 +30,6 @@ const createCampground = async (req, res, next) => {
             const res = await fetch(
                 `https://api.maptiler.com/geocoding/${encodeURIComponent(config.query)}.json?key=${key}`
             );
-
             return await res.json();
         }
     };
@@ -38,6 +37,7 @@ const createCampground = async (req, res, next) => {
     await Geo.forwardGeocode(configuration).then(res => {
         campground.geometry = res.features[0].geometry;
     });
+    //#endregion
 
     if (res.locals.currentUser)
         campground.author = res.locals.currentUser;
@@ -88,6 +88,29 @@ const editCampground = async (req, res) => {
         }
         await campground.updateOne({ $pull: { imgUrl: { fileName: { $in: deleteImages } } } });
     }
+
+    //#region GeoCoding Section
+    const configuration = {
+        query: req.body.campground.location,
+        limit: 1
+    };
+    const key = process.env.MAPTILER_KEY;
+
+    var Geo = {
+        forwardGeocode: async (config) => {
+            const res = await fetch(
+                `https://api.maptiler.com/geocoding/${encodeURIComponent(config.query)}.json?key=${key}`
+            );
+
+            return await res.json();
+        }
+    };
+
+    await Geo.forwardGeocode(configuration).then(res => {
+        campground.geometry = res.features[0].geometry;
+    });
+    //#endregion
+
     await campground.updateOne(req.body.campground);
     campground.save();
     req.flash('success', 'You have successfully edited a campground!')

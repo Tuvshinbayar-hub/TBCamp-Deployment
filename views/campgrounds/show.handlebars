@@ -17,7 +17,7 @@
                 <div class="carousel-inner">
                     {{#each campground.imgUrl}}
                     <div class="carousel-item {{#if (eq @index 0)}}active{{/if}}">
-                        <img src="{{{this.url}}}" class="d-block w-100" alt="">
+                        <img src="{{{this.thumbnail}}}" class="d-block w-100" alt="">
                     </div>
                     {{/each}}
                 </div>

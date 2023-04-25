@@ -11,8 +11,7 @@ const ImageSchema = new Schema(
 )
 
 ImageSchema.virtual('thumbnail').get(function () {
-  console.log('generating url', this.url);
-  return this.url.replace('/upload', '/upload/w_300');
+  return this.url.replace('/upload', '/upload/w_300,ar_16:9,c_fill/');
 });
 const opts = { toJSON: { virtuals: true } };
 const campgroundSchema = new Schema({
