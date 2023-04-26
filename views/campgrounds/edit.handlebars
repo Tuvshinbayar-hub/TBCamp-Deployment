@@ -56,12 +56,25 @@ Edit Campground
                     </div>
 
                     <div class="mb-3">
-                        {{#each campground.imgUrl}}
-                        <input class="form-check-inline" type="checkbox" value="{{{this.fileName}}}"
-                            id="img{{{@index}}}" name="deleteImages[]">
-                        <label class="form-check-label" for="img{{{@index}}}">
-                            <img src="{{this.thumbnail}}" class="img-thumbnail" alt="image{{{@index}}} of campground">
+                        <div class="container">
+                            <p>
+                                Select images to delete:
+                            </p>
+                            {{#each campground.imgUrl}}
+
+                            <div class="row">
+                                <div class="col-1 d-flex justify-content-center align-items-center offset-1">
+                                    <input class="form-check-input d-inline-block" type="checkbox"
+                                        value="{{{this.fileName}}}" id="img{{{@index}}}" name="deleteImages[]">
+                                </div>
+                                <div class="col-9 d-flex justify-content-start align-items-center">
+                                    <label class="form-check-label" for="img{{{@index}}}">
+                                        <img src="{{this.thumbnail}}" class="img-thumbnail"
+                                            alt="image{{{@index}}} of campground">
+                                </div>
+                            </div>
                             {{/each}}
+                        </div>
                     </div>
 
                     <button class="btn btn-info">Edit</button>
